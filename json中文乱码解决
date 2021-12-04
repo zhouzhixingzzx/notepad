@@ -1,0 +1,20 @@
+1、spring mvc返回json字符串中文乱码解决统一解决
+<mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+ 2、解决单个方法中的json中文乱码
+@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")  
+public @ResponseBody String upload(  
+        @RequestParam("groupId") String groupId,  
+        HttpServletRequest request,  
+        HttpServletResponse response) {  
+           //...  
+       }  
